@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailClientView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var client: Client
-    
+
     var body: some View {
         VStack {
             Image(systemName: "person.circle")

@@ -10,7 +10,7 @@ import SwiftUI
 struct ListClientsView: View {
     @State var clientsList: [Client] = ModelData.chargement("Source.json")
     @State private var showModal: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             List(clientsList, id: \.self) { client in
