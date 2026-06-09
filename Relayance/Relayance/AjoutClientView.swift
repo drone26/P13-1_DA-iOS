@@ -11,7 +11,7 @@ struct AjoutClientView: View {
     @Binding var dismissModal: Bool
     @State var nom: String = ""
     @State var email: String = ""
-    
+
     var body: some View {
         VStack {
             Text("Ajouter un nouveau client")
@@ -24,7 +24,7 @@ struct AjoutClientView: View {
             TextField("Email", text: $email)
                 .font(.title2)
             Button("Ajouter") {
-                //Ajout d'un client
+                // Ajout d'un client
                 dismissModal.toggle()
             }
             .padding(.horizontal, 50)
