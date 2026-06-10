@@ -40,7 +40,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4227407C2C3BF4DD00E7522C"
+               BlueprintIdentifier = "39CFBD7C2FD9EA2C00DAAC16"
                BuildableName = "RelayanceTests.xctest"
                BlueprintName = "RelayanceTests"
                ReferencedContainer = "container:Relayance.xcodeproj">
@@ -54,6 +54,17 @@
                BlueprintIdentifier = "422740862C3BF4DD00E7522C"
                BuildableName = "RelayanceUITests.xctest"
                BlueprintName = "RelayanceUITests"
+               ReferencedContainer = "container:Relayance.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "39CFBD6F2FD9EA1700DAAC16"
+               BuildableName = "RelayanceeTests.xctest"
+               BlueprintName = "RelayanceeTests"
                ReferencedContainer = "container:Relayance.xcodeproj">
             </BuildableReference>
          </TestableReference>

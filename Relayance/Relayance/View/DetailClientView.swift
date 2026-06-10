@@ -2,14 +2,13 @@
 //  DetailClientView.swift
 //  Relayance
 //
-//  Created by Amandine Cousin on 10/07/2024.
-//
 
 import SwiftUI
 
 struct DetailClientView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     var client: Client
+    var viewModel: ClientViewModel
 
     var body: some View {
         VStack {
@@ -31,8 +30,8 @@ struct DetailClientView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Supprimer") {
-                    // suppression
-                    self.presentationMode.wrappedValue.dismiss()
+                    viewModel.deleteClient(client)
+                    dismiss()
                 }
                 .foregroundStyle(.red)
                 .bold()
@@ -42,5 +41,8 @@ struct DetailClientView: View {
 }
 
 #Preview {
-    DetailClientView(client: Client(nom: "Tata", email: "tata@email", dateCreationString: "20:32 Wed, 30 Oct 2019"))
+    DetailClientView(
+        client: Client(nom: "Tata", email: "tata@email.com", dateCreationString: "2024-07-10T14:30:00Z"),
+        viewModel: ClientViewModel()
+    )
 }
