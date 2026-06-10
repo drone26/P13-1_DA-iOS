@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "2B0B248F-24B1-4531-9614-80BB89020C26",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Relayance.xcodeproj",
+        "identifier" : "39CFBD7C2FD9EA2C00DAAC16",
+        "name" : "RelayanceTests"
+      }
+    }
+  ],
+  "version" : 1
+}
