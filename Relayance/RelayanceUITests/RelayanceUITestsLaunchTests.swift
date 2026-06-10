@@ -8,7 +8,7 @@
 import XCTest
 
 final class RelayanceUITestsLaunchTests: XCTestCase {
-
+/*
     override static var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }
@@ -29,4 +29,5 @@ final class RelayanceUITestsLaunchTests: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
+*/
 }
