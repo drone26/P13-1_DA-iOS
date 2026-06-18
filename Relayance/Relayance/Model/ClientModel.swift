@@ -55,9 +55,9 @@ struct Client: Codable, Hashable {
         return false
     }
 
-    func formatDateVersString() -> String {
+    func formatDateVersString(formatter: (Date) -> String? = Date.stringFromDate) -> String {
         // Si stringFromDate renvoie un optionnel mais qu'on sait que self.dateCreation est toujours valide :
-        return Date.stringFromDate(self.dateCreation) ?? "Date inconnue"
+        return formatter(self.dateCreation) ?? "Date inconnue"
     }
 
 }

@@ -2,6 +2,8 @@
 //  ClientViewModel.swift
 //  Relayance
 //
+// Created by Mathieu Arrio on 09/06/2026
+//
 
 import Foundation
 import Observation
@@ -9,7 +11,25 @@ import Observation
 @MainActor
 @Observable
 final class ClientViewModel {
-    var clientsList: [Client] = ModelData.chargement("Source.json")
+    var clientsList: [Client] = []
+
+    /// Initialiseur principal. `nomFichier` et `bundle` sont injectables pour
+    /// permettre aux tests de forcer un échec de chargement (fichier
+    /// manquant, illisible, ou JSON malformé) sans dépendre de l'état réel
+    /// du bundle de l'application — `init()` ci-dessous garde le
+    /// comportement de production inchangé en appelant celui-ci avec les
+    /// valeurs par défaut.
+    init(nomFichier: String = "Source.json", bundle: Bundle = .main) {
+        do {
+            clientsList = try ModelData.chargement(nomFichier, bundle: bundle)
+        } catch {
+            // En cas d'échec de chargement (fichier manquant, illisible, ou JSON
+            // malformé), l'application démarre avec une liste vide plutôt que de
+            // crasher. L'erreur est journalisée pour faciliter le diagnostic.
+            print("ClientViewModel: échec du chargement de \(nomFichier) — \(error)")
+            clientsList = []
+        }
+    }
 
     // MARK: - Validation
 
@@ -37,3 +57,4 @@ final class ClientViewModel {
         clientsList.removeAll { $0 == client }
     }
 }
+
