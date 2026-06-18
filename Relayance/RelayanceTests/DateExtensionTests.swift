@@ -2,6 +2,11 @@
 //  DateExtensionTests.swift
 //  RelayanceTests
 //
+<<<<<<< HEAD
+=======
+//  Created by Mathieu ARRIO on 09/06/2026.
+//
+>>>>>>> fd60245 (test(unittests): improve coverage level)
 
 import XCTest
 @testable import Relayance
@@ -24,16 +29,30 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertEqual(result?.getDay(), 10)
     }
 
+<<<<<<< HEAD
     func testGivenIsoStringWithTimeComponent_WhenCallingDateFromString_ThenReturnsNil() {
         // Given
         // .withFullDate alone does not accept a time/timezone suffix, so this must fail to parse.
+=======
+    func testGivenIsoStringWithTimeComponent_WhenCallingDateFromString_ThenParsesDatePortionAndIgnoresTime() {
+        // Given
+        // ISO8601DateFormatter with .withFullDate tolerates a trailing time/timezone suffix
+        // and simply extracts the date portion, discarding the time component.
+>>>>>>> fd60245 (test(unittests): improve coverage level)
         let isoStringWithTime = "2024-07-10T14:30:00.000Z"
 
         // When
         let result = Date.dateFromString(isoStringWithTime)
 
         // Then
+<<<<<<< HEAD
         XCTAssertNil(result, "A full ISO8601 string including time should not parse with the .withFullDate-only formatter.")
+=======
+        XCTAssertNotNil(result, "A full ISO8601 string including time should still parse successfully.")
+        XCTAssertEqual(result?.getYear(), 2024)
+        XCTAssertEqual(result?.getMonth(), 7)
+        XCTAssertEqual(result?.getDay(), 10)
+>>>>>>> fd60245 (test(unittests): improve coverage level)
     }
 
     func testGivenCompletelyInvalidString_WhenCallingDateFromString_ThenReturnsNil() {
@@ -47,6 +66,21 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertNil(result, "An unparsable string should return nil.")
     }
 
+<<<<<<< HEAD
+=======
+    func testGivenMalformedDateFormat_WhenCallingDateFromString_ThenReturnsNil() {
+        // Given
+        // Wrong separators / non-numeric day-month-year layout, not a valid ISO8601 full date.
+        let malformedString = "10/07/2024"
+
+        // When
+        let result = Date.dateFromString(malformedString)
+
+        // Then
+        XCTAssertNil(result, "A non-ISO8601 formatted string (slashes instead of dashes) should return nil.")
+    }
+
+>>>>>>> fd60245 (test(unittests): improve coverage level)
     func testGivenEmptyString_WhenCallingDateFromString_ThenReturnsNil() {
         // Given
         let emptyString = ""

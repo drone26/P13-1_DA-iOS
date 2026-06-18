@@ -174,5 +174,49 @@ final class ClientTests: XCTestCase {
         // Then
         XCTAssertEqual(formattedString, expectedTodayString, "En cas de string invalide à l'init, la méthode doit formater la date du jour par défaut.")
     }
+
+    // MARK: - Tests for formatDateVersString(formatter:) injected failure path
+
+    func testGivenFormatterReturningNil_WhenCallingFormatDateVersStringWithInjectedFormatter_ThenReturnsDateInconnueFallback() {
+        // Given
+        let client = Client(nom: "Edge Case", email: "edge@example.com", dateCreationString: "2024-07-10T14:30:00.000Z")
+        let alwaysFailingFormatter: (Date) -> String? = { _ in nil }
+
+        // When
+        let formattedString = client.formatDateVersString(formatter: alwaysFailingFormatter)
+
+        // Then
+        XCTAssertEqual(formattedString, "Date inconnue",
+                       "When the injected formatter returns nil, formatDateVersString should fall back to 'Date inconnue'.")
+    }
+
+    func testGivenFormatterReturningValue_WhenCallingFormatDateVersStringWithInjectedFormatter_ThenReturnsFormatterOutput() {
+        // Given
+        let client = Client(nom: "Custom Format", email: "custom@example.com", dateCreationString: "2024-07-10T14:30:00.000Z")
+        let customFormatter: (Date) -> String? = { _ in "CUSTOM_OUTPUT" }
+
+        // When
+        let formattedString = client.formatDateVersString(formatter: customFormatter)
+
+        // Then
+        XCTAssertEqual(formattedString, "CUSTOM_OUTPUT",
+                       "formatDateVersString should return whatever the injected formatter produces when it succeeds.")
+    }
+
+    func testGivenNoFormatterArgument_WhenCallingFormatDateVersString_ThenDefaultsToDateStringFromDate() {
+        // Given
+        let inputDateString = "2024-07-10T14:30:00.000Z"
+        let client = Client(nom: "Default Formatter", email: "default@example.com", dateCreationString: inputDateString)
+
+        // When
+        // Calling without an explicit formatter argument exercises the default
+        // parameter value (Date.stringFromDate), confirming production callers
+        // (e.g. DetailClientView) are unaffected by the new injectable signature.
+        let formattedString = client.formatDateVersString()
+
+        // Then
+        XCTAssertEqual(formattedString, "10-07-2024",
+                       "Without an explicit formatter, formatDateVersString should use Date.stringFromDate as before.")
+    }
     
 }

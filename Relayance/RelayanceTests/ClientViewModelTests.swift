@@ -2,6 +2,8 @@
 //  ClientViewModelTests.swift
 //  RelayanceTests
 //
+//  Created by Mathieu ARRIO on 09/06/2026.
+//
 
 import XCTest
 @testable import Relayance
@@ -222,5 +224,144 @@ final class ClientViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.clientsList.count, initialCount,
                        "After adding and then deleting a client, the count should be back to the original.")
+    }
+}
+
+@MainActor
+final class ClientViewModelInitTests: XCTestCase {
+
+    // MARK: - Temporary fixture directory
+
+    private var tempDirectoryURL: URL!
+    private var tempBundle: Bundle!
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent("ClientViewModelInitTests-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        tempDirectoryURL = directory
+        tempBundle = Bundle(url: directory)
+    }
+
+    override func tearDownWithError() throws {
+        if let tempDirectoryURL,
+           let contents = try? FileManager.default.contentsOfDirectory(at: tempDirectoryURL, includingPropertiesForKeys: nil) {
+            for fileURL in contents {
+                try? FileManager.default.setAttributes([.posixPermissions: 0o644], ofItemAtPath: fileURL.path)
+            }
+        }
+        if let tempDirectoryURL {
+            try? FileManager.default.removeItem(at: tempDirectoryURL)
+        }
+        tempDirectoryURL = nil
+        tempBundle = nil
+        try super.tearDownWithError()
+    }
+
+    // MARK: - Success path (default parameters, mirrors production usage)
+
+    func testGivenDefaultParameters_WhenInitializing_ThenClientsListIsPopulatedFromSourceJson() {
+        // Given / When
+        let sut = ClientViewModel()
+
+        // Then
+        XCTAssertFalse(sut.clientsList.isEmpty,
+                       "With the default nomFichier and bundle, init should successfully load Source.json.")
+    }
+
+    func testGivenValidInjectedFixture_WhenInitializing_ThenClientsListMatchesFixtureContent() throws {
+        // Given
+        let fixtureURL = tempDirectoryURL.appendingPathComponent("Valid.json")
+        let json = #"[{"nom": "Injected User", "email": "injected@example.com", "date_creation": "2024-03-01T00:00:00Z"}]"#
+        try json.write(to: fixtureURL, atomically: true, encoding: .utf8)
+
+        // When
+        let sut = ClientViewModel(nomFichier: "Valid.json", bundle: tempBundle)
+
+        // Then
+        XCTAssertEqual(sut.clientsList.count, 1)
+        XCTAssertEqual(sut.clientsList.first?.nom, "Injected User",
+                       "init should successfully decode a valid injected fixture into clientsList.")
+    }
+
+    // MARK: - Failure path: file not found
+
+    func testGivenNonExistentFileName_WhenInitializing_ThenClientsListIsEmpty() {
+        // Given
+        let missingFileName = "CeFichierNExistePas.json"
+
+        // When
+        let sut = ClientViewModel(nomFichier: missingFileName, bundle: tempBundle)
+
+        // Then
+        XCTAssertTrue(sut.clientsList.isEmpty,
+                     "init's catch branch should leave clientsList empty when the requested file cannot be found.")
+    }
+
+    // MARK: - Failure path: file found but unreadable
+
+    func testGivenUnreadableFile_WhenInitializing_ThenClientsListIsEmpty() throws {
+        // Given
+        let fixtureURL = tempDirectoryURL.appendingPathComponent("Unreadable.json")
+        try "[]".write(to: fixtureURL, atomically: true, encoding: .utf8)
+        try FileManager.default.setAttributes([.posixPermissions: 0o000], ofItemAtPath: fixtureURL.path)
+
+        // When
+        let sut = ClientViewModel(nomFichier: "Unreadable.json", bundle: tempBundle)
+
+        // Then
+        XCTAssertTrue(sut.clientsList.isEmpty,
+                     "init's catch branch should leave clientsList empty when the file cannot be read.")
+
+        // Cleanup: restore permissions so tearDown can remove the file.
+        try? FileManager.default.setAttributes([.posixPermissions: 0o644], ofItemAtPath: fixtureURL.path)
+    }
+
+    // MARK: - Failure path: malformed JSON
+
+    func testGivenMalformedJson_WhenInitializing_ThenClientsListIsEmpty() throws {
+        // Given
+        let fixtureURL = tempDirectoryURL.appendingPathComponent("Malformed.json")
+        let malformedJson = #"{ "nom": "incomplete""#
+        try malformedJson.write(to: fixtureURL, atomically: true, encoding: .utf8)
+
+        // When
+        let sut = ClientViewModel(nomFichier: "Malformed.json", bundle: tempBundle)
+
+        // Then
+        XCTAssertTrue(sut.clientsList.isEmpty,
+                     "init's catch branch should leave clientsList empty when the JSON is syntactically malformed.")
+    }
+
+    func testGivenJsonWithIncompatibleShape_WhenInitializing_ThenClientsListIsEmpty() throws {
+        // Given
+        // Syntactically valid JSON, but missing required Client fields (email, date_creation).
+        let fixtureURL = tempDirectoryURL.appendingPathComponent("WrongShape.json")
+        let wrongShapeJson = #"[{"nom": "Missing Other Fields"}]"#
+        try wrongShapeJson.write(to: fixtureURL, atomically: true, encoding: .utf8)
+
+        // When
+        let sut = ClientViewModel(nomFichier: "WrongShape.json", bundle: tempBundle)
+
+        // Then
+        XCTAssertTrue(sut.clientsList.isEmpty,
+                     "init's catch branch should leave clientsList empty when the JSON doesn't match Client's expected shape.")
+    }
+
+    // MARK: - Post-failure usability: the view model remains functional after a failed load
+
+    func testGivenFailedInitialLoad_WhenCallingAddClientAfterward_ThenClientIsAddedNormally() {
+        // Given
+        let sut = ClientViewModel(nomFichier: "CeFichierNExistePas.json", bundle: tempBundle)
+        XCTAssertTrue(sut.clientsList.isEmpty, "Precondition: load failed, list starts empty.")
+
+        // When
+        sut.addClient(nom: "Recovery User", email: "recovery@example.com")
+
+        // Then
+        XCTAssertEqual(sut.clientsList.count, 1,
+                       "Even after a failed initial load, the view model should remain fully usable for subsequent mutations.")
+        XCTAssertEqual(sut.clientsList.first?.nom, "Recovery User")
     }
 }
