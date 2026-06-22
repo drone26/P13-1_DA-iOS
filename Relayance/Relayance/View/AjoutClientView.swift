@@ -9,9 +9,17 @@ struct AjoutClientView: View {
     var viewModel: ClientViewModel
     @Binding var dismissModal: Bool
 
-    @State private var nom: String = ""
-    @State private var email: String = ""
-    @State private var showValidationError = false
+    @State private var nom: String
+    @State private var email: String
+    @State private var showValidationError: Bool
+
+    init(viewModel: ClientViewModel, dismissModal: Binding<Bool>) {
+        self.viewModel = viewModel
+        self._dismissModal = dismissModal
+        self._nom = State(initialValue: "")
+        self._email = State(initialValue: "")
+        self._showValidationError = State(initialValue: false)
+    }
 
     private var isFormValid: Bool {
         viewModel.isValidName(nom) && viewModel.isValidEmail(email)
