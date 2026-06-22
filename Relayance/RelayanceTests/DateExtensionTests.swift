@@ -2,11 +2,8 @@
 //  DateExtensionTests.swift
 //  RelayanceTests
 //
-<<<<<<< HEAD
-=======
-//  Created by Mathieu ARRIO on 09/06/2026.
+// Created by Mathieu ARRIO on 11/06/2026
 //
->>>>>>> fd60245 (test(unittests): improve coverage level)
 
 import XCTest
 @testable import Relayance
@@ -29,44 +26,20 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertEqual(result?.getDay(), 10)
     }
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-    func testGivenIsoStringWithTimeComponent_WhenCallingDateFromString_ThenReturnsNil() {
-        // Given
-        // .withFullDate alone does not accept a time/timezone suffix, so this must fail to parse.
-=======
     func testGivenIsoStringWithTimeComponent_WhenCallingDateFromString_ThenParsesDatePortionAndIgnoresTime() {
         // Given
         // ISO8601DateFormatter with .withFullDate tolerates a trailing time/timezone suffix
         // and simply extracts the date portion, discarding the time component.
->>>>>>> fd60245 (test(unittests): improve coverage level)
-=======
-    func testGivenIsoStringWithTimeComponent_WhenCallingDateFromString_ThenParsesDatePortionOnly() {
-        // Given
-        // .withFullDate is lenient: it parses the leading yyyy-MM-dd prefix and ignores the
-        // trailing time/timezone suffix, returning midnight UTC of the parsed date.
->>>>>>> Stashed changes
         let isoStringWithTime = "2024-07-10T14:30:00.000Z"
 
         // When
         let result = Date.dateFromString(isoStringWithTime)
 
         // Then
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-        XCTAssertNil(result, "A full ISO8601 string including time should not parse with the .withFullDate-only formatter.")
-=======
         XCTAssertNotNil(result, "A full ISO8601 string including time should still parse successfully.")
         XCTAssertEqual(result?.getYear(), 2024)
         XCTAssertEqual(result?.getMonth(), 7)
         XCTAssertEqual(result?.getDay(), 10)
->>>>>>> fd60245 (test(unittests): improve coverage level)
-=======
-        XCTAssertNotNil(result, "The leading yyyy-MM-dd prefix should still parse even when a time suffix is present.")
-        XCTAssertEqual(result?.getYear(), 2024)
-        XCTAssertEqual(result?.getMonth(), 7)
-        XCTAssertEqual(result?.getDay(), 10)
->>>>>>> Stashed changes
     }
 
     func testGivenCompletelyInvalidString_WhenCallingDateFromString_ThenReturnsNil() {
@@ -80,8 +53,6 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertNil(result, "An unparsable string should return nil.")
     }
 
-<<<<<<< HEAD
-=======
     func testGivenMalformedDateFormat_WhenCallingDateFromString_ThenReturnsNil() {
         // Given
         // Wrong separators / non-numeric day-month-year layout, not a valid ISO8601 full date.
@@ -94,7 +65,6 @@ final class DateExtensionTests: XCTestCase {
         XCTAssertNil(result, "A non-ISO8601 formatted string (slashes instead of dashes) should return nil.")
     }
 
->>>>>>> fd60245 (test(unittests): improve coverage level)
     func testGivenEmptyString_WhenCallingDateFromString_ThenReturnsNil() {
         // Given
         let emptyString = ""
