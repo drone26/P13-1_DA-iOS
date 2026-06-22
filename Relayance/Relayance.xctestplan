@@ -18,6 +18,13 @@
         "identifier" : "39CFBD7C2FD9EA2C00DAAC16",
         "name" : "RelayanceTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Relayance.xcodeproj",
+        "identifier" : "392056772FE91E6E0001859C",
+        "name" : "RelayanceUITests"
+      }
     }
   ],
   "version" : 1

@@ -14,6 +14,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3920567E2FE91E6E0001859C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422740652C3BF4DC00E7522C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4227406C2C3BF4DC00E7522C;
+			remoteInfo = Relayance;
+		};
 		39CFBD812FD9EA2C00DAAC16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 422740652C3BF4DC00E7522C /* Project object */;
@@ -24,18 +31,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		392056782FE91E6E0001859C /* RelayanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelayanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CFBD6B2FD9E9FC00DAAC16 /* Relayance.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Relayance.xctestplan; sourceTree = "<group>"; };
 		39CFBD7D2FD9EA2C00DAAC16 /* RelayanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelayanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4227406D2C3BF4DC00E7522C /* Relayance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Relayance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		422740702C3BF4DC00E7522C /* RelayanceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceApp.swift; sourceTree = "<group>"; };
 		422740742C3BF4DD00E7522C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		422740772C3BF4DD00E7522C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4227408B2C3BF4DD00E7522C /* RelayanceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceUITests.swift; sourceTree = "<group>"; };
-		4227408D2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayanceUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		422740EE2C3ECD1500E7522C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		392056792FE91E6E0001859C /* RelayanceUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RelayanceUITests; sourceTree = "<group>"; };
 		39CFBD462FD9E36100DAAC16 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 		39CFBD472FD9E39E00DAAC16 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
 		39CFBD482FD9E3AC00DAAC16 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
@@ -43,6 +50,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		392056752FE91E6E0001859C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39CFBD7A2FD9EA2C00DAAC16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -65,8 +79,8 @@
 			children = (
 				39CFBD6B2FD9E9FC00DAAC16 /* Relayance.xctestplan */,
 				4227406F2C3BF4DC00E7522C /* Relayance */,
-				4227408A2C3BF4DD00E7522C /* RelayanceUITests */,
 				39CFBD7E2FD9EA2C00DAAC16 /* RelayanceTests */,
+				392056792FE91E6E0001859C /* RelayanceUITests */,
 				4227406E2C3BF4DC00E7522C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +90,7 @@
 			children = (
 				4227406D2C3BF4DC00E7522C /* Relayance.app */,
 				39CFBD7D2FD9EA2C00DAAC16 /* RelayanceTests.xctest */,
+				392056782FE91E6E0001859C /* RelayanceUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,18 +117,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		4227408A2C3BF4DD00E7522C /* RelayanceUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4227408B2C3BF4DD00E7522C /* RelayanceUITests.swift */,
-				4227408D2C3BF4DD00E7522C /* RelayanceUITestsLaunchTests.swift */,
-			);
-			path = RelayanceUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		392056772FE91E6E0001859C /* RelayanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 392056822FE91E6E0001859C /* Build configuration list for PBXNativeTarget "RelayanceUITests" */;
+			buildPhases = (
+				392056742FE91E6E0001859C /* Sources */,
+				392056752FE91E6E0001859C /* Frameworks */,
+				392056762FE91E6E0001859C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3920567F2FE91E6E0001859C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				392056792FE91E6E0001859C /* RelayanceUITests */,
+			);
+			name = RelayanceUITests;
+			packageProductDependencies = (
+			);
+			productName = RelayanceUITests;
+			productReference = 392056782FE91E6E0001859C /* RelayanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		39CFBD7C2FD9EA2C00DAAC16 /* RelayanceTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 39CFBD832FD9EA2C00DAAC16 /* Build configuration list for PBXNativeTarget "RelayanceTests" */;
@@ -170,6 +199,10 @@
 				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
+					392056772FE91E6E0001859C = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 4227406C2C3BF4DC00E7522C;
+					};
 					39CFBD7C2FD9EA2C00DAAC16 = {
 						CreatedOnToolsVersion = 26.5;
 						LastSwiftMigration = 2650;
@@ -195,11 +228,19 @@
 			targets = (
 				4227406C2C3BF4DC00E7522C /* Relayance */,
 				39CFBD7C2FD9EA2C00DAAC16 /* RelayanceTests */,
+				392056772FE91E6E0001859C /* RelayanceUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		392056762FE91E6E0001859C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39CFBD7B2FD9EA2C00DAAC16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +281,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		392056742FE91E6E0001859C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		39CFBD792FD9EA2C00DAAC16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,6 +307,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3920567F2FE91E6E0001859C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4227406C2C3BF4DC00E7522C /* Relayance */;
+			targetProxy = 3920567E2FE91E6E0001859C /* PBXContainerItemProxy */;
+		};
 		39CFBD822FD9EA2C00DAAC16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4227406C2C3BF4DC00E7522C /* Relayance */;
@@ -267,6 +320,48 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		392056802FE91E6E0001859C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBTB3WLHP5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.myk8s.RelayanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Relayance;
+			};
+			name = Debug;
+		};
+		392056812FE91E6E0001859C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DBTB3WLHP5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.myk8s.RelayanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Relayance;
+			};
+			name = Release;
+		};
 		39CFBD842FD9EA2C00DAAC16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -500,6 +595,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		392056822FE91E6E0001859C /* Build configuration list for PBXNativeTarget "RelayanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				392056802FE91E6E0001859C /* Debug */,
+				392056812FE91E6E0001859C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		39CFBD832FD9EA2C00DAAC16 /* Build configuration list for PBXNativeTarget "RelayanceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

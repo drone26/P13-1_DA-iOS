@@ -51,7 +51,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "422740862C3BF4DD00E7522C"
+               BlueprintIdentifier = "392056772FE91E6E0001859C"
                BuildableName = "RelayanceUITests.xctest"
                BlueprintName = "RelayanceUITests"
                ReferencedContainer = "container:Relayance.xcodeproj">

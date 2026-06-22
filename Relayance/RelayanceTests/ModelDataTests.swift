@@ -2,6 +2,7 @@
 //  ModelDataTests.swift
 //  RelayanceTests
 //
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 //  Coverage notes:
 //
@@ -43,13 +44,18 @@
 =======
 //  Created by Mathieu ARRIO on 09/06/2026.
 //
+=======
+>>>>>>> Stashed changes
 //  ModelData.chargement(_:bundle:) now throws ModelDataError instead of
 //  calling fatalError, so all three failure branches are fully testable
 //  here without crashing the test process. The `bundle` parameter defaults
 //  to `.main` (unchanged for all production call sites) and is overridden
 //  in the error-path tests below to point at controlled fixtures created
 //  on disk for the duration of each test.
+<<<<<<< Updated upstream
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+>>>>>>> Stashed changes
 //
 
 import XCTest
@@ -57,9 +63,12 @@ import XCTest
 
 final class ModelDataTests: XCTestCase {
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     // MARK: - Success path: resource resolution
 =======
+=======
+>>>>>>> Stashed changes
     // MARK: - Temporary fixture directory
 
     private var tempDirectoryURL: URL!
@@ -91,7 +100,10 @@ final class ModelDataTests: XCTestCase {
     }
 
     // MARK: - Success path: resource resolution (Bundle.main / Source.json)
+<<<<<<< Updated upstream
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+>>>>>>> Stashed changes
 
     func testGivenSourceJsonInHostAppBundle_WhenResolvingViaBundleMain_ThenURLIsFound() {
         // Given
@@ -105,6 +117,7 @@ final class ModelDataTests: XCTestCase {
                         "Source.json must be resolvable through Bundle.main (the host Relayance.app bundle) for chargement's success path to be exercised.")
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     // MARK: - Success path: decoding into [Client]
 
@@ -114,30 +127,44 @@ final class ModelDataTests: XCTestCase {
 
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenReturnsNonEmptyClientsArray() throws {
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+    // MARK: - Success path: decoding into [Client] via the default Bundle.main
+
+    func testGivenSourceJsonFileName_WhenCallingChargement_ThenReturnsNonEmptyClientsArray() throws {
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         let result: [Client] = ModelData.chargement(fileName)
 =======
         let result: [Client] = try ModelData.chargement(fileName)
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+        let result: [Client] = try ModelData.chargement(fileName)
+>>>>>>> Stashed changes
 
         // Then
         XCTAssertFalse(result.isEmpty,
                        "chargement should successfully locate, read, and decode Source.json into a non-empty array.")
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenReturnsExpectedNumberOfClients() {
 =======
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenReturnsExpectedNumberOfClients() throws {
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+    func testGivenSourceJsonFileName_WhenCallingChargement_ThenReturnsExpectedNumberOfClients() throws {
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         let result: [Client] = ModelData.chargement(fileName)
 
@@ -148,24 +175,37 @@ final class ModelDataTests: XCTestCase {
 
         // Then
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+        let result: [Client] = try ModelData.chargement(fileName)
+
+        // Then
+>>>>>>> Stashed changes
         XCTAssertEqual(result.count, 8,
                        "chargement should decode every element present in Source.json.")
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenFirstClientFieldsAreCorrectlyDecoded() {
 =======
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenFirstClientFieldsAreCorrectlyDecoded() throws {
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+    func testGivenSourceJsonFileName_WhenCallingChargement_ThenFirstClientFieldsAreCorrectlyDecoded() throws {
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         let result: [Client] = ModelData.chargement(fileName)
 =======
         let result: [Client] = try ModelData.chargement(fileName)
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+        let result: [Client] = try ModelData.chargement(fileName)
+>>>>>>> Stashed changes
 
         // Then
         let first = result.first
@@ -175,15 +215,20 @@ final class ModelDataTests: XCTestCase {
                        "The 'email' field of the first entry should be decoded exactly as stored in Source.json.")
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenDateCreationKeyIsMappedFromSnakeCase() {
 =======
     func testGivenSourceJsonFileName_WhenCallingChargement_ThenDateCreationKeyIsMappedFromSnakeCase() throws {
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+    func testGivenSourceJsonFileName_WhenCallingChargement_ThenDateCreationKeyIsMappedFromSnakeCase() throws {
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         let result: [Client] = ModelData.chargement(fileName)
 
@@ -195,21 +240,31 @@ final class ModelDataTests: XCTestCase {
 
         // Then
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+        let result: [Client] = try ModelData.chargement(fileName)
+
+        // Then
+>>>>>>> Stashed changes
         let first = result.first
         XCTAssertEqual(first?.dateCreation.getYear(), 2024)
         XCTAssertEqual(first?.dateCreation.getMonth(), 1)
         XCTAssertEqual(first?.dateCreation.getDay(), 15)
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     func testGivenSourceJsonFileName_WhenCallingChargementTwice_ThenBothCallsReturnEquivalentData() {
 =======
     func testGivenSourceJsonFileName_WhenCallingChargementTwice_ThenBothCallsReturnEquivalentData() throws {
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+    func testGivenSourceJsonFileName_WhenCallingChargementTwice_ThenBothCallsReturnEquivalentData() throws {
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         let firstLoad: [Client] = ModelData.chargement(fileName)
         let secondLoad: [Client] = ModelData.chargement(fileName)
@@ -223,10 +278,17 @@ final class ModelDataTests: XCTestCase {
 
         // Then
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+        let firstLoad: [Client] = try ModelData.chargement(fileName)
+        let secondLoad: [Client] = try ModelData.chargement(fileName)
+
+        // Then
+>>>>>>> Stashed changes
         XCTAssertEqual(firstLoad, secondLoad,
                        "Repeated calls to chargement with the same file name should yield equivalent results.")
     }
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     // MARK: - Generic behavior over T: Decodable
 
@@ -234,16 +296,24 @@ final class ModelDataTests: XCTestCase {
 =======
     // MARK: - Success path: generic decoding into a non-Client Decodable type
 
+=======
+    // MARK: - Success path: generic decoding into a non-Client Decodable type
+
+>>>>>>> Stashed changes
     private struct NameOnlyEntry: Decodable, Equatable {
         let nom: String
     }
 
     func testGivenSourceJsonFileName_WhenCallingChargementWithDifferentDecodableType_ThenDecodesSuccessfully() throws {
+<<<<<<< Updated upstream
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+>>>>>>> Stashed changes
         // Given
         let fileName = "Source.json"
 
         // When
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         // The call site's type annotation drives T's inference; this test makes that
         // generic resolution explicit rather than relying on a single call-site shape.
@@ -256,6 +326,11 @@ final class ModelDataTests: XCTestCase {
         let result: [NameOnlyEntry] = try ModelData.chargement(fileName)
 
         // Then
+=======
+        let result: [NameOnlyEntry] = try ModelData.chargement(fileName)
+
+        // Then
+>>>>>>> Stashed changes
         XCTAssertEqual(result.count, 8,
                        "chargement<T> should decode all 8 entries regardless of which Decodable type T is.")
         XCTAssertEqual(result.first, NameOnlyEntry(nom: "Frida Kahlo"),
@@ -405,6 +480,9 @@ final class ModelDataTests: XCTestCase {
 
         // When / Then
         XCTAssertNotEqual(errorA, errorB)
+<<<<<<< Updated upstream
 >>>>>>> fd60245 (test(unittests): improve coverage level)
+=======
+>>>>>>> Stashed changes
     }
 }
